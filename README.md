@@ -1,24 +1,14 @@
-![PulseTrace](docs/banner.svg)
-
 # PulseTrace
 
 Offline MATLAB research workflows for radio-frequency physiological sensing, respiration, cardiac signals, and reference-signal comparison.
 
-> **Development history:** Developed locally using Git before publication. These projects were published to GitHub together, so similar upload dates do not indicate when development began.
+Start with a calibrated airflow vector to measure complete breathing cycles, rate and inspired/expired volume. The example below uses base MATLAB and a known synthetic reference.
 
-## Quick start
+[Run the airflow example](#offline-airflow-measurements-base-matlab) · [Legacy zero crossings](#legacy-zero-crossing-entry-point) · [Method and evidence](docs/OFFLINE-ANALYSIS.md)
 
-Open MATLAB in this repository, then use the branded entry point:
+<img src="docs/results/airflow.png" alt="Retained synthetic validation: calibrated sinusoidal airflow above; inspired volume measurements and analytic reference below" width="720">
 
-```matlab
-sample_rate = 100;
-t = (0:999) / sample_rate;
-signal = sin(2*pi*0.7*t + 0.1); % synthetic signal, not a sensor recording
-crossings = pulse_trace(signal, sample_rate, struct('minTime', 0));
-disp(crossings(1:5,:)); % sample index and crossing direction (-1 or +1)
-```
-
-The entry point preserves the existing function's arguments, errors, and numerical output. Existing script and function names remain available for compatibility. No sensor starts when you open this repository.
+*Retained numerical validation figure, with exported [cycle measurements](docs/results/airflow-cycles.csv). The synthetic reference is 15 cycles/min and approximately 0.509296 L per inspiration. See the [recorded MATLAB verification](docs/VERIFICATION.md); this is not a participant recording.*
 
 ## Offline airflow measurements (base MATLAB)
 
@@ -37,9 +27,19 @@ For a recording, supply a finite mono vector sampled uniformly at `fs`, in **lit
 
 No implicit smoothing is applied. Noisy flow, pauses, unknown polarity, sensor drift, RF amplitudes, or motion artifacts require justified preprocessing before this measurement path. This is a numerical research workflow, not clinical validation. See [method and evidence](docs/OFFLINE-ANALYSIS.md).
 
-![Synthetic airflow and volume compared with the analytic reference](docs/results/airflow.png)
+## Legacy zero-crossing entry point
 
-[Inspect the exported measurements](docs/results/airflow-cycles.csv). The plot shows synthetic numerical validation, not participant data.
+Open MATLAB in this repository, then use the compatibility entry point:
+
+```matlab
+sample_rate = 100;
+t = (0:999) / sample_rate;
+signal = sin(2*pi*0.7*t + 0.1); % synthetic signal, not a sensor recording
+crossings = pulse_trace(signal, sample_rate, struct('minTime', 0));
+disp(crossings(1:5,:)); % sample index and crossing direction (-1 or +1)
+```
+
+The entry point preserves the existing function's arguments, errors, and numerical output. Existing script and function names remain available for compatibility. No sensor starts when you open this repository.
 
 ## Inputs and workflows
 
