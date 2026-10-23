@@ -11,7 +11,11 @@ Offline MATLAB research workflows for radio-frequency physiological sensing, res
 Open MATLAB in this repository, then use the branded entry point:
 
 ```matlab
+sample_rate = 100;
+t = (0:999) / sample_rate;
+signal = sin(2*pi*0.7*t + 0.1); % synthetic signal, not a sensor recording
 crossings = pulse_trace(signal, sample_rate, struct('minTime', 0));
+disp(crossings(1:5,:)); % sample index and crossing direction (-1 or +1)
 ```
 
 The entry point preserves the existing function's arguments, errors, and numerical output. Existing script and function names remain available for compatibility. No sensor starts when you open this repository.
