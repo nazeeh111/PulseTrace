@@ -76,7 +76,7 @@ tDiffNcs = etime(tRelNcsStop,tNcsStart);
 tDiffBio = etime(tBioStop,tBioStart);
 
 ncsStopSamp = int64(tDiffNcs*fs(1));
-ncsAbdStopSamp = ncsStopSamp - int64(tOffNcsThAbd*fs(2)); % Shifting by same number of samples as earlier shifted right
+ncsAbdStopSamp = ncsStopSamp - int64(tOffNcsThAbd*fs(1)); % Shifting by same number of samples as earlier shifted right
 bioStopSamp = int64(tDiffBio*fs(2));
 
 ncs(:,1:2) = ncsUnsync(ncsStartSamp:ncsStopSamp,1:2); % [Amp,Ph] Th
