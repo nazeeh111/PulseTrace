@@ -43,11 +43,11 @@ The entry point preserves the existing function's arguments, errors, and numeric
 
 ## Inputs and workflows
 
-The facade returns zero-crossing indices and direction. Complete study scripts use experiment-specific recordings, absolute paths, Signal Processing Toolbox and acquisition software. No clinical performance or new participant study is claimed. The two historical `rmse.m` stubs now return `[RMSE, sample standard deviation of signed errors]` for finite paired vectors. Separately supplied TDMS, ECG and Bland-Altman utilities retain their own terms.
+The facade returns zero-crossing indices and direction. The [respiratory workflow map](docs/RESPIRATORY-WORKFLOW.md) follows the historical NCS/reference pipeline, its input contracts and missing helper versions. Complete study scripts use experiment-specific recordings, absolute paths, Signal Processing Toolbox and acquisition software. No clinical performance or new participant study is claimed. The two historical `rmse.m` stubs now return `[RMSE, sample standard deviation of signed errors]` for finite paired vectors. Separately supplied TDMS, ECG and Bland-Altman utilities retain their own terms.
 
 ## Verification
 
-Run `run('tests/smoke_test.m'); run('tests/offline_test.m')` from the repository root. See [verification details](docs/VERIFICATION.md) for the tested scope and unavailable checks. The original facade remains numerically compatible. The added offline analysis is independent of the historical study scripts; the two unusable RMSE stubs are the only modified historical computational files.
+Run `run('tests/smoke_test.m'); run('tests/offline_test.m')` from the repository root. See [verification details](docs/VERIFICATION.md) for the tested scope and unavailable checks. The original facade remains numerically compatible. The added offline analysis is independent of the historical study scripts. Its verification does not establish that the complete legacy study pipelines run.
 
 ## License
 
